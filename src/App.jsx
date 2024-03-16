@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Card, CardHeader, CardMedia, CardContent, Grid, Box, Typography, TextField, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import kanokLogo from './assets/kanok.jpg';
-import pachaLogo from './assets/pracha.jpg';
-import inLogo from './assets/indara.jpg';
-import bruLogo from './assets/bru.jpg';
+import kanokLogo from './assets/kanok1.png';
+import pachaLogo from './assets/pracha1.png';
+import inLogo from './assets/indara1.png';
+import bruLogo from './assets/bru1.png';
 import logo from './assets/back.jpg';
 
 
@@ -14,6 +14,7 @@ const theme = createTheme({
       main: '#ff0000',
     },
   },
+  typography: { fontFamily: ["Krub", "sans-serif"].join(","), fontWeightRegular: 900 }
 });
 
 
@@ -25,6 +26,7 @@ function App() {
   const [hasRandomized, setHasRandomized] = useState(false);
   const house = ["ประชาชื่น", "อินทร", "กนกอาชีวะ", "บูรณพล"];
   const picture = [pachaLogo, inLogo, kanokLogo, bruLogo];
+
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -89,6 +91,7 @@ function App() {
               <div style={{ backgroundColor: 'white', padding: '10px', display: 'flex', alignItems: 'center', borderRadius: '10px' }}>
                 <Typography variant="h5">จำนวนผู้สมัคร : </Typography>
                 <TextField
+                  id="inputEnter"
                   type="number"
                   style={{ flex: 1, marginRight: '10px', marginLeft: '10px' }}
                   onChange={(e) => {
@@ -97,6 +100,13 @@ function App() {
                       setTotalPeople(value);
                     } else {
                       alert("กรุณากรอกจำนวนเต็มบวก");
+                    }
+                  }}
+                  onKeyUp={(ev) => {
+                    console.log(`Pressed keyCode ${ev.key}`);
+                    if (ev.key === 'Enter') {
+                      ev.preventDefault();
+                      randomizePeople(totalPeople);
                     }
                   }}
                 />
@@ -113,13 +123,21 @@ function App() {
             )}
           </div>
           {houses.some(people => people !== 0) &&
-            <div style={{ backgroundColor: 'white', padding: '10px', display: 'flex', alignItems: 'center', borderRadius: '10px' }}>
+            <div style={{ backgroundColor: 'white', padding: '10px', display: 'flex', alignItems: 'center', borderRadius: '10px', marginBottom: '1em' }}>
               <Typography variant="h5">กรอกชื่อ :</Typography>
               <TextField
+                id='inputEnter'
                 type="text"
                 style={{ flex: 1, marginRight: '10px', marginLeft: '10px' }}
                 onChange={(e) => setCurrentName(e.target.value)}
                 value={currentName}
+                onKeyUp={(ev) => {
+                  console.log(`Pressed keyCode ${ev.key}`);
+                  if (ev.key === 'Enter') {
+                    ev.preventDefault();
+                    assignToHouse(currentName);
+                  }
+                }}
               />
               <Button variant="contained" onClick={() => assignToHouse(currentName)} style={{ height: '56px' }}>สมัคร</Button>
             </div>
@@ -132,10 +150,10 @@ function App() {
                   <CardContent style={{ flexGrow: 1 }}>
                     <Grid container spacing={1}>
                       <Grid item xs={12} md={6}>
-                        <CardMedia
-                          component="img"
-                          height="150"
-                          image={picture[index]}
+                        <img
+                          width={'150px'}
+
+                          src={picture[index]}
                           alt={house[index]}
                         />
                       </Grid>

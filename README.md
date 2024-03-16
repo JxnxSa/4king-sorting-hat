@@ -1,8 +1,12 @@
-# React + Vite
+# Sorting Hat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## วิธีการ Run  
+**run บน Terminal** :  
+ 1. run คำสั่ง ```git clone https://github.com/JxnxSa/4king-sorting-hat.git```
+ 2. run คำสั่ง ```npm run dev```
+    
+**run บน web** : https://4king-sorting-hat.netlify.app/
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## วิธีการเล่น :
+1. กรอกจำนวนเต็มบวก แล้วกด ```รับ```
+2. กรอกชื่อ แล้วกด ```สมัคร``` 
